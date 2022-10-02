@@ -5,6 +5,10 @@ import { Category, INote, INoteEdit } from "./interfaces/note.interface";
 import { IStats } from "./interfaces/stats.interface";
 import { CreateNoteDto } from "./dto/createNote.dto";
 
+import { IsEnum } from "class-validator";
+import { EditNoteDto } from "./dto/editNote.dto";
+
+
 @Injectable()
 export class NoteService {
   private notes: INote[] = [
@@ -128,7 +132,7 @@ export class NoteService {
     return newNote;
   }
 
-  editNoteById(id: string, { name, category, content }: CreateNoteDto) {
+  editNoteById(id: string, { name, category, content }: EditNoteDto) {
     const editNote = this.notes.find((note) => note.id === id);
     editNote!.name = name || editNote!.name;
     editNote!.category = category || editNote!.category;

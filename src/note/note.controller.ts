@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CreateNoteDto } from "./dto/createNote.dto";
+import { EditNoteDto } from "./dto/editNote.dto";
 import { INoteEdit } from "./interfaces/note.interface";
 import { NoteService } from "./note.service";
 
@@ -36,10 +37,10 @@ export class NoteController {
   createNote(@Body() note: CreateNoteDto) {
     return this.noteService.createNote(note);
   }
-  
+
   @UsePipes(new ValidationPipe())
   @Patch(":id")
-  editNote(@Param("id") id: string, @Body() body: CreateNoteDto) {
+  editNote(@Param("id") id: string, @Body() body: EditNoteDto) {
     return this.noteService.editNoteById(id, body);
   }
 
